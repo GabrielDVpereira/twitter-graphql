@@ -2,8 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import App from './App';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const app = document.getElementById('app');
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000/graphql',
+  cache: new InMemoryCache(),
+});
 
 const ErrorFallback: React.ComponentType<FallbackProps> = ({
   error,
@@ -37,7 +43,9 @@ ReactDOM.render(
       // reset the state of your app so the error doesn't happen again
     }}
   >
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </ErrorBoundary>,
   app
 );

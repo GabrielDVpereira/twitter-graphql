@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 import * as low from 'lowdb';
 import * as FileSync from 'lowdb/adapters/FileSync';
 import { v4 as uuid } from 'uuid';
